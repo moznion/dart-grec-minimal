@@ -29,4 +29,32 @@ void main() {
           throwsA('invalid weekday is given; something wrong in the library'));
     });
   });
+
+  group('For .fromString()', () {
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('MO'), Weekday.MO);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('TU'), Weekday.TU);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('WE'), Weekday.WE);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('TH'), Weekday.TH);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('FR'), Weekday.FR);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('SA'), Weekday.SA);
+    });
+    test('should get MO enum item', () {
+      expect(WeekdayOperator.fromString('SU'), Weekday.SU);
+    });
+    test('should fail to get enum item', () {
+      expect(() => WeekdayOperator.fromString('INVALID'),
+          throwsA(equals('invalid weekday string is given: INVALID')));
+    });
+  });
 }

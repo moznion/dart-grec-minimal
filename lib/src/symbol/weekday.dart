@@ -30,4 +30,14 @@ class WeekdayOperator {
     // unreachable
     throw 'invalid weekday is given; something wrong in the library';
   }
+
+  static Weekday fromString(final String given) {
+    for (var v in Weekday.values) { // TODO perf
+      if (given == getSimpleName(v)) {
+        return v;
+      }
+    }
+
+    throw 'invalid weekday string is given: ${given}';
+  }
 }
