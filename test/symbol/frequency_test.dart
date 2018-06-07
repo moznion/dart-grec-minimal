@@ -27,13 +27,13 @@ void main() {
     test('should get DAILY enum item', () {
       expect(FrequencyOperator.fromString('DAILY'), Frequency.DAILY);
     });
-    test('should get DAILY enum item', () {
+    test('should get WEEKLY enum item', () {
       expect(FrequencyOperator.fromString('WEEKLY'), Frequency.WEEKLY);
     });
-    test('should get DAILY enum item', () {
+    test('should get MONTHLY enum item', () {
       expect(FrequencyOperator.fromString('MONTHLY'), Frequency.MONTHLY);
     });
-    test('should get DAILY enum item', () {
+    test('should get YEARLY enum item', () {
       expect(FrequencyOperator.fromString('YEARLY'), Frequency.YEARLY);
     });
     test('should fail to get enum item', () {
