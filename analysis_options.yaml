@@ -13,3 +13,18 @@ linter:
     - test_types_in_equals
     - unrelated_type_equality_checks
     - valid_regexps
+    - unnecessary_this
+    - avoid_relative_lib_imports
+    - prefer_final_fields
+    - prefer_final_locals
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_const_declarations
+    - no_duplicate_case_values
+    - unnecessary_statements
+    - prefer_single_quotes
+    - unnecessary_parenthesis
+    - use_string_buffers
+    - package_names
+    - void_checks
+
