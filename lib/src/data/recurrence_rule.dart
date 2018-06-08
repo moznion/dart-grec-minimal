@@ -26,12 +26,29 @@ class RecurrenceRule {
         _byday.getNth() != null &&
         _byday.getWeekday().length >= 2) {
       throw new ConditionalException(
-          'conflicted. it is prohibited to specify `Nth` with multiple weekdays.');
+          'conflicted. it is prohibited to specify `Nth` of `BYDAY` with multiple weekdays.');
     }
 
     if (_count != null && _until != null) {
       throw new ConditionalException(
           'conflicted. it is prohibited to specify `COUNT` and `UNTIL` together.');
+    }
+
+    if (_frequency == Frequency.DAILY && _byday != null) {
+      throw new ConditionalException(
+          'conflicted. it is prohibited to specify `BYDAY` when `FREQ` is DAILY.');
+    }
+
+    if (_frequency == Frequency.WEEKLY &&
+        _byday != null &&
+        _byday.getNth() != null) {
+      throw new ConditionalException(
+          'conflicted. it is prohibited to specify `Nth` of `BYDAY` when `FREQ` is WEEKLY.');
+    }
+
+    if (_frequency == Frequency.YEARLY && _byday != null) {
+      throw new ConditionalException(
+          'conflicted. it is prohibited to specify `BYDAY` when `FREQ` is YEARLY.');
     }
   }
 

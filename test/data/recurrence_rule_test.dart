@@ -8,8 +8,8 @@ void main() {
       [
         new RecurrenceRule(Frequency.DAILY, null, null, null, null),
         new RecurrenceRule(
-            Frequency.DAILY, 123, null, 2, new Byday([Weekday.MO], 2)),
-        new RecurrenceRule(Frequency.DAILY, null, new DateTime.now(), 2,
+            Frequency.MONTHLY, 123, null, 2, new Byday([Weekday.MO], 2)),
+        new RecurrenceRule(Frequency.WEEKLY, null, new DateTime.now(), 2,
             new Byday([Weekday.MO, Weekday.FR], null)),
       ].forEach((r) => expect(r is RecurrenceRule, isTrue));
     });
@@ -31,7 +31,7 @@ void main() {
     test('should fail instantiate with Nth and multiple weekdays', () {
       Exception err;
       try {
-        new RecurrenceRule(Frequency.DAILY, null, null, null,
+        new RecurrenceRule(Frequency.MONTHLY, null, null, null,
             new Byday([Weekday.MO, Weekday.TU], 2));
       } catch (e) {
         err = e;
@@ -42,7 +42,7 @@ void main() {
       expect(
           err.toString(),
           equals(
-              'conflicted. it is prohibited to specify `Nth` with multiple weekdays.'));
+              'conflicted. it is prohibited to specify `Nth` of `BYDAY` with multiple weekdays.'));
     });
 
     test('should fail instantiate when both of count and until are not null',
@@ -61,6 +61,63 @@ void main() {
           err.toString(),
           equals(
               'conflicted. it is prohibited to specify `COUNT` and `UNTIL` together.'));
+    });
+
+    test(
+        'should fail instantiate when `BYDAY` is specified even if frequency is DAILY',
+        () {
+      Exception err;
+      try {
+        new RecurrenceRule(
+            Frequency.DAILY, null, null, null, new Byday([Weekday.MO], null));
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is ConditionalException, isTrue);
+      expect(
+          err.toString(),
+          equals(
+              'conflicted. it is prohibited to specify `BYDAY` when `FREQ` is DAILY.'));
+    });
+
+    test(
+        'should fail instantiate when `Nth` of `BYDAY` is specified even if frequency is WEEKLY',
+        () {
+      Exception err;
+      try {
+        new RecurrenceRule(
+            Frequency.WEEKLY, null, null, null, new Byday([Weekday.MO], 2));
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is ConditionalException, isTrue);
+      expect(
+          err.toString(),
+          equals(
+              'conflicted. it is prohibited to specify `Nth` of `BYDAY` when `FREQ` is WEEKLY.'));
+    });
+
+    test(
+        'should fail instantiate when `BYDAY` is specified even if frequency is YEARLY',
+        () {
+      Exception err;
+      try {
+        new RecurrenceRule(
+            Frequency.YEARLY, null, null, null, new Byday([Weekday.MO], null));
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is ConditionalException, isTrue);
+      expect(
+          err.toString(),
+          equals(
+              'conflicted. it is prohibited to specify `BYDAY` when `FREQ` is YEARLY.'));
     });
   });
 
