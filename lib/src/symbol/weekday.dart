@@ -32,7 +32,8 @@ class WeekdayOperator {
   }
 
   static Weekday fromString(final String given) {
-    for (var v in Weekday.values) { // TODO perf
+    for (var v in Weekday.values) {
+      // TODO perf
       if (given == getSimpleName(v)) {
         return v;
       }

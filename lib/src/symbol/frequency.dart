@@ -23,7 +23,8 @@ class FrequencyOperator {
   }
 
   static Frequency fromString(final String given) {
-    for (var v in Frequency.values) { // TODO perf
+    for (var v in Frequency.values) {
+      // TODO perf
       if (given == getSimpleName(v)) {
         return v;
       }

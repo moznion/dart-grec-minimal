@@ -25,5 +25,6 @@ class TokenOperator {
     }
 
     // unreachable
-    throw 'invalid token is given; something wrong in the library'; }
+    throw 'invalid token is given; something wrong in the library';
+  }
 }
