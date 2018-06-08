@@ -22,7 +22,9 @@ class RecurrenceRule {
           '`FREQ` is missing. the parameter is mandatory');
     }
 
-    if (_byday.getNth() != null && _byday.getWeekday().length >= 2) {
+    if (_byday != null &&
+        _byday.getNth() != null &&
+        _byday.getWeekday().length >= 2) {
       throw new ConditionalException(
           'conflicted. it is prohibited to specify `Nth` with multiple weekdays.');
     }
@@ -54,7 +56,7 @@ class RecurrenceRule {
       final String untilStr = _until
           .toIso8601String()
           .replaceAll(new RegExp(r'(?:[-:]|[.]000)'), '');
-      text += ';UNTIL=${untilStr}';
+      text += ';UNTIL=${untilStr}Z';
     }
 
     if (_interval != null) {
@@ -67,7 +69,7 @@ class RecurrenceRule {
           .getWeekday()
           .map((w) => WeekdayOperator.getSimpleName(w))
           .join(',');
-      text += ';BYDAY=${nth}${weekdays}';
+      text += ';BYDAY=${nth ?? ''}${weekdays}';
     }
 
     return text;
