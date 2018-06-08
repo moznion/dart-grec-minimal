@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:grec_minimal/grec_minimal.dart';
+import 'package:grec_minimal/src/symbol/token.dart';
 
 void main() {
   group('for .getSimpleName', () {

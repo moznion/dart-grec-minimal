@@ -1,0 +1,2 @@
+class GrecMinimalException implements Exception {
+}

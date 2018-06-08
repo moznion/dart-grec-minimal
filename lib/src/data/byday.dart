@@ -1,4 +1,4 @@
-import '../symbol/weekday.dart';
+import 'package:grec_minimal/src/symbol/weekday.dart';
 
 class Byday {
   final List<Weekday> _weekday;

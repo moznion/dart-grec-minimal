@@ -1,7 +1,7 @@
-import './parsable.dart';
-import './parse_result.dart';
-import '../symbol/weekday.dart';
-import '../data/byday.dart';
+import 'package:grec_minimal/src/data/byday.dart';
+import 'package:grec_minimal/src/parser/parsable.dart';
+import 'package:grec_minimal/src/parser/parse_result.dart';
+import 'package:grec_minimal/src/symbol/weekday.dart';
 
 class BydayParser implements Parsable<Byday> {
   static final RegExp _bydayRE = new RegExp(r'BYDAY=(\d+)?([^;]+);?');
@@ -22,9 +22,6 @@ class BydayParser implements Parsable<Byday> {
     final String nth = match.group(1);
     final List<String> weekdays = match.group(2).split(',');
 
-    if (weekdays.length >= 2 && nth != null) {
-      throw 'conflict: nth specifier with multiple weekdays'; // TODO msg
-    }
     return new ParseResult(
       subject.replaceAll(_bydayRE, ''),
       new Byday(

@@ -1,6 +1,5 @@
+import 'package:grec_minimal/src/parser/parsable.dart';
 import 'package:grec_minimal/src/parser/parse_result.dart';
-
-import './parsable.dart';
 
 class RruleParser implements Parsable<dynamic> {
   static final RegExp _startRE = new RegExp(r'^RRULE:');
