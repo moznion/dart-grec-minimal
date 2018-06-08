@@ -3,6 +3,7 @@ import 'package:grec_minimal/src/exception/conditional_exception.dart';
 import 'package:grec_minimal/src/symbol/frequency.dart';
 import 'package:grec_minimal/src/symbol/weekday.dart';
 
+/// RecurrenceRule is a data type that represents recurrence rule of calendar.
 class RecurrenceRule {
   final Frequency _frequency;
   final int _count;
@@ -52,16 +53,22 @@ class RecurrenceRule {
     }
   }
 
+  /// getFrequency returns frequency of recurrence that is specified by FREQ.
   Frequency getFrequency() => _frequency;
 
+  /// getCount returns count of recurrence that is specified by COUNT.
   int getCount() => _count;
 
+  /// getUntil returns until of recurrence that is specified by UNTIL.
   DateTime getUntil() => _until;
 
+  /// getInterval returns interval of recurrence that is specified by INTERVAL.
   int getInterval() => _interval;
 
+  /// getByday returns byday of recurrence that is specified by BYDAY.
   Byday getByday() => _byday;
 
+  /// asRuleText dumps the rule as a text.
   String asRuleText() {
     String text = 'RRULE:FREQ=${FrequencyOperator.getSimpleName(_frequency)}';
 

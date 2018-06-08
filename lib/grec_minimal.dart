@@ -1,6 +1,6 @@
-/// Support for doing something awesome.
+/// Provides a minimal parser and generator implementation of recurrence rule for Google Calendar.
 ///
-/// More dartdocs go here.
+/// See also: RFC 5545
 library grec_minimal;
 
 export 'src/data/byday.dart';

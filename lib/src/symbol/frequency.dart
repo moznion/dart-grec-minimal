@@ -1,5 +1,6 @@
 import 'package:grec_minimal/src/exception/illegal_argument_exception.dart';
 
+/// Frequency represents the frequency of recurrence rule.
 enum Frequency {
   DAILY,
   WEEKLY,
@@ -7,7 +8,9 @@ enum Frequency {
   YEARLY,
 }
 
+/// FrequencyOperator is an operator for Frequency enum.
 class FrequencyOperator {
+  /// getSimpleName returns the simple name of a Frequency enum item.
   static String getSimpleName(Frequency freq) {
     switch (freq) {
       case Frequency.DAILY:
@@ -25,6 +28,7 @@ class FrequencyOperator {
         'invalid frequency is given; something wrong in the library');
   }
 
+  /// fromString returns the Frequency enum item according to given argument.
   static Frequency fromString(final String given) {
     for (var v in Frequency.values) {
       // TODO perf
