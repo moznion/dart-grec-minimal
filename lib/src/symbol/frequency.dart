@@ -1,3 +1,5 @@
+import 'package:grec_minimal/src/exception/illegal_argument_exception.dart';
+
 enum Frequency {
   DAILY,
   WEEKLY,
@@ -19,7 +21,8 @@ class FrequencyOperator {
     }
 
     // unreachable
-    throw 'invalid frequency is given; something wrong in the library';
+    throw new IllegalArgumentException(
+        'invalid frequency is given; something wrong in the library');
   }
 
   static Frequency fromString(final String given) {
@@ -30,6 +33,7 @@ class FrequencyOperator {
       }
     }
 
-    throw 'invalid frequency string is given: ${given}';
+    throw new IllegalArgumentException(
+        'invalid frequency string is given: ${given}');
   }
 }

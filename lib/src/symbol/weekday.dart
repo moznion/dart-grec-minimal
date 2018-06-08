@@ -1,3 +1,5 @@
+import 'package:grec_minimal/src/exception/illegal_argument_exception.dart';
+
 enum Weekday {
   MO,
   TU,
@@ -28,7 +30,8 @@ class WeekdayOperator {
     }
 
     // unreachable
-    throw 'invalid weekday is given; something wrong in the library';
+    throw new IllegalArgumentException(
+        'invalid weekday is given; something wrong in the library');
   }
 
   static Weekday fromString(final String given) {
@@ -39,6 +42,7 @@ class WeekdayOperator {
       }
     }
 
-    throw 'invalid weekday string is given: ${given}';
+    throw new IllegalArgumentException(
+        'invalid weekday string is given: ${given}');
   }
 }

@@ -16,10 +16,17 @@ void main() {
       expect(FrequencyOperator.getSimpleName(Frequency.YEARLY), 'YEARLY');
     });
     test('should fail to get simple name with invalid value', () {
-      expect(
-          () => FrequencyOperator.getSimpleName(null),
-          throwsA(equals(
-              'invalid frequency is given; something wrong in the library')));
+      Exception err;
+      try {
+        FrequencyOperator.getSimpleName(null);
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is IllegalArgumentException, isTrue);
+      expect(err.toString(),
+          equals('invalid frequency is given; something wrong in the library'));
     });
   });
 
@@ -37,8 +44,17 @@ void main() {
       expect(FrequencyOperator.fromString('YEARLY'), Frequency.YEARLY);
     });
     test('should fail to get enum item', () {
-      expect(() => FrequencyOperator.fromString('INVALID'),
-          throwsA(equals('invalid frequency string is given: INVALID')));
+      Exception err;
+      try {
+        FrequencyOperator.fromString('INVALID');
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is IllegalArgumentException, isTrue);
+      expect(
+          err.toString(), equals('invalid frequency string is given: INVALID'));
     });
   });
 }

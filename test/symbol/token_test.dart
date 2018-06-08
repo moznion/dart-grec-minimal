@@ -1,3 +1,4 @@
+import 'package:grec_minimal/src/exception/illegal_argument_exception.dart';
 import 'package:test/test.dart';
 import 'package:grec_minimal/src/symbol/token.dart';
 
@@ -22,10 +23,17 @@ void main() {
       expect(TokenOperator.getSimpleName(Token.BYDAY), 'BYDAY');
     });
     test('should fail to get simple name with invalid value', () {
-      expect(
-          () => TokenOperator.getSimpleName(null),
-          throwsA(equals(
-              'invalid token is given; something wrong in the library')));
+      Exception err;
+      try {
+        TokenOperator.getSimpleName(null);
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is IllegalArgumentException, isTrue);
+      expect(err.toString(),
+          equals('invalid token is given; something wrong in the library'));
     });
   });
 }

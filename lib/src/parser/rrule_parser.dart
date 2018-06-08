@@ -1,3 +1,4 @@
+import 'package:grec_minimal/src/exception/invalid_syntax_exception.dart';
 import 'package:grec_minimal/src/parser/parsable.dart';
 import 'package:grec_minimal/src/parser/parse_result.dart';
 
@@ -7,7 +8,8 @@ class RruleParser implements Parsable<dynamic> {
   @override
   ParseResult<dynamic> parse(final String subject) {
     if (!_startRE.hasMatch(subject)) {
-      throw 'invalid sequence'; // TODO msg
+      throw new InvalidSyntaxException(
+          'syntax error: rule text must be started with `RRULE:`.');
     }
 
     final String remain = subject.replaceFirst(_startRE, '');

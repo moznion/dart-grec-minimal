@@ -1,3 +1,4 @@
+import 'package:grec_minimal/src/exception/invalid_syntax_exception.dart';
 import 'package:grec_minimal/src/parser/parsable.dart';
 import 'package:grec_minimal/src/parser/parse_result.dart';
 
@@ -13,7 +14,8 @@ class IntervalParser implements Parsable<int> {
     }
 
     if (matches.length >= 2) {
-      throw 'invalid: prohibit multiple'; // TODO msg
+      throw new InvalidSyntaxException(
+          'syntax error: `INTERVAL` can appear to once at most.');
     }
 
     final Match intervalMatched = matches.single;

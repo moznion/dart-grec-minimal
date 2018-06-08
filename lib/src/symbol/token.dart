@@ -1,3 +1,5 @@
+import 'package:grec_minimal/src/exception/illegal_argument_exception.dart';
+
 enum Token {
   RRULE,
   FREQ,
@@ -25,6 +27,7 @@ class TokenOperator {
     }
 
     // unreachable
-    throw 'invalid token is given; something wrong in the library';
+    throw new IllegalArgumentException(
+        'invalid token is given; something wrong in the library');
   }
 }

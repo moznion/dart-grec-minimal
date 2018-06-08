@@ -1,4 +1,5 @@
 import 'package:grec_minimal/src/data/byday.dart';
+import 'package:grec_minimal/src/exception/invalid_syntax_exception.dart';
 import 'package:grec_minimal/src/parser/parsable.dart';
 import 'package:grec_minimal/src/parser/parse_result.dart';
 import 'package:grec_minimal/src/symbol/weekday.dart';
@@ -15,7 +16,8 @@ class BydayParser implements Parsable<Byday> {
     }
 
     if (matches.length >= 2) {
-      throw 'invalid: prohibit multiple'; // TODO msg
+      throw new InvalidSyntaxException(
+          'syntax error: `BYDAY` can appear to once at most.');
     }
 
     final Match match = matches.first;

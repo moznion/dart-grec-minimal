@@ -25,8 +25,17 @@ void main() {
       expect(WeekdayOperator.getSimpleName(Weekday.SU), 'SU');
     });
     test('should fail to get simple name with invalid value', () {
-      expect(() => WeekdayOperator.getSimpleName(null),
-          throwsA('invalid weekday is given; something wrong in the library'));
+      Exception err;
+      try {
+        WeekdayOperator.getSimpleName(null);
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is IllegalArgumentException, isTrue);
+      expect(err.toString(),
+          equals('invalid weekday is given; something wrong in the library'));
     });
   });
 
@@ -53,8 +62,17 @@ void main() {
       expect(WeekdayOperator.fromString('SU'), Weekday.SU);
     });
     test('should fail to get enum item', () {
-      expect(() => WeekdayOperator.fromString('INVALID'),
-          throwsA(equals('invalid weekday string is given: INVALID')));
+      Exception err;
+      try {
+        WeekdayOperator.fromString('INVALID');
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is IllegalArgumentException, isTrue);
+      expect(
+          err.toString(), equals('invalid weekday string is given: INVALID'));
     });
   });
 }
