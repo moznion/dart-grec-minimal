@@ -1,9 +1,9 @@
 import 'package:grec_minimal/src/exception/grec_minimal_exception.dart';
 
-class ConditionException implements GrecMinimalException {
+class ConditionalException implements GrecMinimalException {
   final String _cause;
 
-  ConditionException(this._cause);
+  ConditionalException(this._cause);
 
   @override
   String toString() => _cause;

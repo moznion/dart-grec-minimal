@@ -1,5 +1,5 @@
 import 'package:grec_minimal/src/data/byday.dart';
-import 'package:grec_minimal/src/exception/condition_exception.dart';
+import 'package:grec_minimal/src/exception/conditional_exception.dart';
 import 'package:grec_minimal/src/symbol/frequency.dart';
 import 'package:grec_minimal/src/symbol/weekday.dart';
 
@@ -18,17 +18,17 @@ class RecurrenceRule {
     this._byday,
   ) {
     if (_frequency == null) {
-      throw new ConditionException(
+      throw new ConditionalException(
           '`FREQ` is missing. the parameter is mandatory');
     }
 
     if (_byday.getNth() != null && _byday.getWeekday().length >= 2) {
-      throw new ConditionException(
+      throw new ConditionalException(
           'conflicted. it is prohibited to specify `Nth` with multiple weekdays.');
     }
 
     if (_count != null && _until != null) {
-      throw new ConditionException(
+      throw new ConditionalException(
           'conflicted. it is prohibited to specify `COUNT` and `UNTIL` together.');
     }
   }
