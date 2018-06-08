@@ -56,7 +56,10 @@ class RecurrenceRule {
       final String untilStr = _until
           .toIso8601String()
           .replaceAll(new RegExp(r'(?:[-:]|[.]000)'), '');
-      text += ';UNTIL=${untilStr}Z';
+      text += ';UNTIL=${untilStr}';
+      if (!untilStr.endsWith('Z')) {
+        text += 'Z';
+      }
     }
 
     if (_interval != null) {

@@ -25,7 +25,7 @@ class BydayParser implements Parsable<Byday> {
     return new ParseResult(
       subject.replaceAll(_bydayRE, ''),
       new Byday(
-        weekdays.map((w) => WeekdayOperator.fromString(w)),
+        weekdays.map((w) => WeekdayOperator.fromString(w)).toList(),
         nth == null ? null : int.parse(nth, radix: 10),
       ),
     );

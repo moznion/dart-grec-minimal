@@ -46,22 +46,22 @@ void main() {
     });
 
     test('should fail instantiate when both of count and until are not null',
-            () {
-          Exception err;
-          try {
-            new RecurrenceRule(Frequency.DAILY, 123, new DateTime.now(), 2,
-                new Byday([Weekday.MO], 2));
-          } catch (e) {
-            err = e;
-          }
+        () {
+      Exception err;
+      try {
+        new RecurrenceRule(Frequency.DAILY, 123, new DateTime.now(), 2,
+            new Byday([Weekday.MO], 2));
+      } catch (e) {
+        err = e;
+      }
 
-          expect(err, isNotNull);
-          expect(err is ConditionalException, isTrue);
-          expect(
-              err.toString(),
-              equals(
-                  'conflicted. it is prohibited to specify `COUNT` and `UNTIL` together.'));
-        });
+      expect(err, isNotNull);
+      expect(err is ConditionalException, isTrue);
+      expect(
+          err.toString(),
+          equals(
+              'conflicted. it is prohibited to specify `COUNT` and `UNTIL` together.'));
+    });
   });
 
   group('.asRuleText', () {
@@ -96,7 +96,7 @@ void main() {
     test('with byday (single, wituhout Nth)', () {
       expect(
           new RecurrenceRule(Frequency.WEEKLY, null, null, null,
-              new Byday([Weekday.TU], null))
+                  new Byday([Weekday.TU], null))
               .asRuleText(),
           equals('RRULE:FREQ=WEEKLY;BYDAY=TU'));
     });
@@ -104,17 +104,17 @@ void main() {
     test('with byday (multi, wituhout Nth)', () {
       expect(
           new RecurrenceRule(
-              Frequency.WEEKLY,
-              null,
-              null,
-              null,
-              new Byday([
-                Weekday.MO,
-                Weekday.TU,
-                Weekday.WE,
-                Weekday.TH,
-                Weekday.FR
-              ], null))
+                  Frequency.WEEKLY,
+                  null,
+                  null,
+                  null,
+                  new Byday([
+                    Weekday.MO,
+                    Weekday.TU,
+                    Weekday.WE,
+                    Weekday.TH,
+                    Weekday.FR
+                  ], null))
               .asRuleText(),
           equals('RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR'));
     });
@@ -122,14 +122,16 @@ void main() {
     test('with byday (single, with Nth)', () {
       expect(
           new RecurrenceRule(Frequency.MONTHLY, null, null, null,
-              new Byday([Weekday.TU], 3))
+                  new Byday([Weekday.TU], 3))
               .asRuleText(),
           equals('RRULE:FREQ=MONTHLY;BYDAY=3TU'));
     });
 
     test('complex case', () {
-      expect(new RecurrenceRule(Frequency.WEEKLY, 123, null, 2,
-          new Byday([Weekday.SA, Weekday.SU], null)).asRuleText(),
+      expect(
+          new RecurrenceRule(Frequency.WEEKLY, 123, null, 2,
+                  new Byday([Weekday.SA, Weekday.SU], null))
+              .asRuleText(),
           equals('RRULE:FREQ=WEEKLY;COUNT=123;INTERVAL=2;BYDAY=SA,SU'));
     });
   });
