@@ -1,4 +1,6 @@
-.PHONY: fmt fmt-check lint test
+.PHONY: default fmt fmt-check lint test check
+
+default: check
 
 test:
 	pub run test
@@ -7,9 +9,10 @@ fmt:
 	dartfmt --overwrite .
 
 fmt-check:
-	OUT=$$(dartfmt --dry-run .); \
-	if [ ! -z $$OUT ]; then exit 1; fi
+	dartfmt --set-exit-if-changed --dry-run .
 
 lint:
-	dartanalyzer --options analysis_options.yaml .
+	dartanalyzer --fatal-lints --options analysis_options.yaml .
+
+check: test lint fmt-check
 
