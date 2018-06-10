@@ -137,7 +137,7 @@ void main() {
     });
 
     test('with until', () {
-      var dt = new DateTime(2018, 6, 12, 20, 12, 32);
+      final DateTime dt = new DateTime(2018, 6, 12, 20, 12, 32);
       expect(
           new RecurrenceRule(Frequency.DAILY, null, dt, null, null)
               .asRuleText(),
