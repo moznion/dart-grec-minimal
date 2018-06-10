@@ -1,6 +1,6 @@
 # grec_minimal
 
-A minimal parser/generator of recurrence rule for Google Calendar.
+A minimal parser/generator of Google Calendar recurrence rule for dart.
 
 ## Synopsis
 
@@ -46,7 +46,7 @@ See also: [example/](./example)
 
 ## Description
 
-A minimal parser/generator of recurrence rule for Google Calendar.
+grec_minimal is a simple parser/generator of recurrence rule for Google Calendar.
 
 This library provides two funnctions:
 
