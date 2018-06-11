@@ -10,7 +10,7 @@ class CountParser implements Parsable<int> {
     final Iterable<Match> matches = _countRE.allMatches(subject);
 
     if (matches.isEmpty) {
-      return new ParseResult(subject, null);
+      return new ParseResult<int>(subject, null);
     }
 
     if (matches.length >= 2) {
@@ -19,7 +19,7 @@ class CountParser implements Parsable<int> {
     }
 
     final Match countMatched = matches.single;
-    return new ParseResult(
+    return new ParseResult<int>(
       subject.replaceAll(_countRE, ''),
       int.parse(countMatched.group(1), radix: 10),
     );

@@ -14,6 +14,6 @@ class RruleParser implements Parsable<dynamic> {
 
     final String remain = subject.replaceFirst(_startRE, '');
 
-    return new ParseResult(remain, null);
+    return new ParseResult<dynamic>(remain, null);
   }
 }

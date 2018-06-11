@@ -11,7 +11,7 @@ class FrequencyParser implements Parsable<Frequency> {
     final Iterable<Match> matches = _freqRE.allMatches(subject);
 
     if (matches.isEmpty) {
-      return new ParseResult(subject, null);
+      return new ParseResult<Frequency>(subject, null);
     }
 
     if (matches.length >= 2) {
@@ -20,7 +20,7 @@ class FrequencyParser implements Parsable<Frequency> {
     }
 
     final Match freqMatched = matches.single;
-    return new ParseResult(
+    return new ParseResult<Frequency>(
       subject.replaceAll(_freqRE, ''),
       FrequencyOperator.fromString(freqMatched.group(1)),
     );

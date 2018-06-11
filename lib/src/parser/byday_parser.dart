@@ -12,7 +12,7 @@ class BydayParser implements Parsable<Byday> {
     final Iterable<Match> matches = _bydayRE.allMatches(subject);
 
     if (matches.isEmpty) {
-      return new ParseResult(subject, null);
+      return new ParseResult<Byday>(subject, null);
     }
 
     if (matches.length >= 2) {
@@ -24,10 +24,10 @@ class BydayParser implements Parsable<Byday> {
     final String nth = match.group(1);
     final List<String> weekdays = match.group(2).split(',');
 
-    return new ParseResult(
+    return new ParseResult<Byday>(
       subject.replaceAll(_bydayRE, ''),
       new Byday(
-        weekdays.map((w) => WeekdayOperator.fromString(w)).toList(),
+        weekdays.map(WeekdayOperator.fromString).toList(),
         nth == null ? null : int.parse(nth, radix: 10),
       ),
     );

@@ -10,7 +10,7 @@ class UntilParser implements Parsable<DateTime> {
     final Iterable<Match> matches = _untilRE.allMatches(subject);
 
     if (matches.isEmpty) {
-      return new ParseResult(subject, null);
+      return new ParseResult<DateTime>(subject, null);
     }
 
     if (matches.length >= 2) {
@@ -19,7 +19,7 @@ class UntilParser implements Parsable<DateTime> {
     }
 
     final Match untilMatched = matches.single;
-    return new ParseResult(
+    return new ParseResult<DateTime>(
       subject.replaceAll(_untilRE, ''),
       DateTime.parse(untilMatched.group(1)),
     );

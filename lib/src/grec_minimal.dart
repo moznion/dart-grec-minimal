@@ -5,12 +5,10 @@ import 'package:grec_minimal/src/parser/recurrence_rule_parser.dart';
 /// This class provides parser and generator for recurrence rule of Google Calendar.
 class GrecMinimal {
   /// fromTexts parses and converts the recurrence rule text(s) to recurrence rule object(s).
-  static List<RecurrenceRule> fromTexts(final List<String> texts) {
-    return texts.map((text) => RecurrenceRuleParser.parse(text)).toList();
-  }
+  static List<RecurrenceRule> fromTexts(final List<String> texts) =>
+      texts.map(RecurrenceRuleParser.parse).toList();
 
   /// toTexts generates the recurrence rule text(s) from recurrence rule object(s).
-  static List<String> toTexts(final List<RecurrenceRule> rules) {
-    return rules.map((r) => r.asRuleText()).toList();
-  }
+  static List<String> toTexts(final List<RecurrenceRule> rules) =>
+      rules.map((RecurrenceRule r) => r.asRuleText()).toList();
 }

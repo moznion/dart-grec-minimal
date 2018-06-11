@@ -37,17 +37,18 @@ class WeekdayOperator {
         'invalid weekday is given; something wrong in the library');
   }
 
-  static final Map<String, Weekday> _str2weekday = new Map.fromIterable(
-      Weekday.values,
-      key: (v) => getSimpleName(v),
-      value: (v) => v);
+  static final Map<String, Weekday> _str2weekday =
+      new Map<String, Weekday>.fromIterable(Weekday.values,
+          // ignore: unnecessary_lambdas
+          key: (dynamic v) => getSimpleName(v),
+          value: (dynamic v) => v);
 
   /// fromString returns the Weekday enum item according to given argument.
   static Weekday fromString(final String given) {
     final Weekday weekday = _str2weekday[given];
     if (weekday == null) {
       throw new IllegalArgumentException(
-          'invalid weekday string is given: ${given}');
+          'invalid weekday string is given: $given');
     }
 
     return weekday;
