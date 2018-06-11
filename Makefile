@@ -16,3 +16,10 @@ lint:
 
 check: test lint fmt-check
 
+publish:
+ifdef PROD
+	pub publish
+else
+	pub publish --dry-run
+endif
+
