@@ -10,12 +10,20 @@ A minimal parser/generator of Google Calendar recurrence rule for dart.
 ```dart
 import 'package:grec_minimal/grec_minimal.dart';
 
-main() {
+void main() {
   final List<String> recurrenceRuleTexts = [
-     'RRULE:FREQ=DAILY',
+    'RRULE:FREQ=DAILY',
     // put recurrence rule texts
   ];
-  final List<RecurrenceRule> rules = GrecMinimal.fromTexts(recurrenceRuleTexts);
+
+  List<RecurrenceRule> rules;
+  try {
+    rules = GrecMinimal.fromTexts(recurrenceRuleTexts);
+  } catch (ex) {
+    // There is possibility to occur InvalidSyntaxException and/or ConditionalException
+    // do something
+    rethrow;
+  }
 
   rules.forEach((rule) {
     // do something
@@ -29,7 +37,7 @@ main() {
 ```dart
 import 'package:grec_minimal/grec_minimal.dart';
 
-main() {
+void main() {
   final List<String> ruleTexts = GrecMinimal.toTexts([
     new RecurrenceRule(Frequency.DAILY, 123, null, 2, null),
     // put recurrence rule object as you like
