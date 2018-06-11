@@ -28,16 +28,19 @@ class FrequencyOperator {
         'invalid frequency is given; something wrong in the library');
   }
 
+  static final Map<String, Frequency> _str2freq = new Map.fromIterable(
+      Frequency.values,
+      key: (v) => getSimpleName(v),
+      value: (v) => v);
+
   /// fromString returns the Frequency enum item according to given argument.
   static Frequency fromString(final String given) {
-    for (var v in Frequency.values) {
-      // TODO perf
-      if (given == getSimpleName(v)) {
-        return v;
-      }
+    final Frequency freq = _str2freq[given];
+    if (freq == null) {
+      throw new IllegalArgumentException(
+          'invalid frequency string is given: ${given}');
     }
 
-    throw new IllegalArgumentException(
-        'invalid frequency string is given: ${given}');
+    return freq;
   }
 }
