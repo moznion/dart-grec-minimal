@@ -70,24 +70,25 @@ class RecurrenceRule {
 
   /// asRuleText dumps the rule as a text.
   String asRuleText() {
-    String text = 'RRULE:FREQ=${FrequencyOperator.getSimpleName(_frequency)}';
+    final StringBuffer sb = new StringBuffer(
+        'RRULE:FREQ=${FrequencyOperator.getSimpleName(_frequency)}');
 
     if (_count != null) {
-      text += ';COUNT=${_count}';
+      sb.write(';COUNT=${_count}');
     }
 
     if (_until != null) {
       final String untilStr = _until
           .toIso8601String()
           .replaceAll(new RegExp(r'(?:[-:]|[.]000)'), '');
-      text += ';UNTIL=${untilStr}';
+      sb.write(';UNTIL=${untilStr}');
       if (!untilStr.endsWith('Z')) {
-        text += 'Z';
+        sb.write('Z');
       }
     }
 
     if (_interval != null) {
-      text += ';INTERVAL=${_interval}';
+      sb.write(';INTERVAL=${_interval}');
     }
 
     if (_byday != null) {
@@ -96,9 +97,9 @@ class RecurrenceRule {
           .getWeekday()
           .map((w) => WeekdayOperator.getSimpleName(w))
           .join(',');
-      text += ';BYDAY=${nth ?? ''}${weekdays}';
+      sb.write(';BYDAY=${nth ?? ''}${weekdays}');
     }
 
-    return text;
+    return sb.toString();
   }
 }
