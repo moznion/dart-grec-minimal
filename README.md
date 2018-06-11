@@ -1,4 +1,4 @@
-# grec_minimal
+# grec_minimal [![Build Status](https://travis-ci.org/moznion/dart-grec-minimal.svg?branch=master)](https://travis-ci.org/moznion/dart-grec-minimal)
 
 A minimal parser/generator of Google Calendar recurrence rule for dart.
 
