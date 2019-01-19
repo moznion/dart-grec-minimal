@@ -5,12 +5,6 @@ import 'package:grec_minimal/src/symbol/weekday.dart';
 
 /// RecurrenceRule is a data type that represents recurrence rule of calendar.
 class RecurrenceRule {
-  final Frequency _frequency;
-  final int _count;
-  final DateTime _until;
-  final int _interval;
-  final Byday _byday;
-
   RecurrenceRule(
     this._frequency,
     this._count,
@@ -52,6 +46,12 @@ class RecurrenceRule {
           'conflicted. it is prohibited to specify `BYDAY` when `FREQ` is YEARLY.');
     }
   }
+
+  final Frequency _frequency;
+  final int _count;
+  final DateTime _until;
+  final int _interval;
+  final Byday _byday;
 
   /// getFrequency returns frequency of recurrence that is specified by FREQ.
   Frequency getFrequency() => _frequency;
