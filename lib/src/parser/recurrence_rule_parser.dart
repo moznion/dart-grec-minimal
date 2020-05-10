@@ -1,6 +1,7 @@
 import 'package:grec_minimal/src/data/byday.dart';
 import 'package:grec_minimal/src/data/recurrence_rule.dart';
 import 'package:grec_minimal/src/parser/byday_parser.dart';
+import 'package:grec_minimal/src/parser/bymonthday_parser.dart';
 import 'package:grec_minimal/src/parser/count_parser.dart';
 import 'package:grec_minimal/src/parser/frequency_parser.dart';
 import 'package:grec_minimal/src/parser/interval_parser.dart';
@@ -35,12 +36,18 @@ class RecurrenceRuleParser {
     final ParseResult<DateTime> untilResult = new UntilParser().parse(remain);
     remain = untilResult.getRemain();
 
+    // BYMONTHDAY
+    final ParseResult<List<int>> bymonthdayResult =
+        new BymonthdayParser().parse(remain);
+    remain = bymonthdayResult.getRemain();
+
     return new RecurrenceRule(
       freqResult.getValue(),
       countResult.getValue(),
       untilResult.getValue(),
       intervalResult.getValue(),
       bydayResult.getValue(),
+      bymonthdayResult.getValue(),
     );
   }
 }

@@ -11,6 +11,7 @@ class RecurrenceRule {
     this._until,
     this._interval,
     this._byday,
+    this._bymonthday,
   ) {
     if (_frequency == null) {
       throw new ConditionalException(
@@ -52,6 +53,7 @@ class RecurrenceRule {
   final DateTime _until;
   final int _interval;
   final Byday _byday;
+  final List<int> _bymonthday;
 
   /// getFrequency returns frequency of recurrence that is specified by FREQ.
   Frequency getFrequency() => _frequency;
@@ -67,6 +69,9 @@ class RecurrenceRule {
 
   /// getByday returns byday of recurrence that is specified by BYDAY.
   Byday getByday() => _byday;
+
+  /// getBymonthday returns bymonthday of recurrence that is specified by BYMONTHDAY.
+  List<int> getBymonthday() => _bymonthday;
 
   /// asRuleText dumps the rule as a text.
   String asRuleText() {
@@ -96,6 +101,10 @@ class RecurrenceRule {
       final String weekdays =
           _byday.getWeekday().map(WeekdayOperator.getSimpleName).join(',');
       sb.write(';BYDAY=${nth ?? ''}$weekdays');
+    }
+
+    if (_bymonthday != null) {
+      sb.write(';BYMONTHDAY=${_bymonthday.join(",")}');
     }
 
     return sb.toString();

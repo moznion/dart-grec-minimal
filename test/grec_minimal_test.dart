@@ -47,6 +47,8 @@ void main() {
       'RRULE:FREQ=MONTHLY;COUNT=12;INTERVAL=2;BYDAY=2TU',
       'RRULE:FREQ=MONTHLY;UNTIL=20190611T145959Z;INTERVAL=2;BYDAY=2TU',
       'RRULE:FREQ=MONTHLY;UNTIL=20190612T145959Z;INTERVAL=2',
+      'RRULE:FREQ=MONTHLY;COUNT=10;BYMONTHDAY=2',
+      'RRULE:FREQ=MONTHLY;COUNT=10;BYMONTHDAY=2,15',
     ];
 
     final List<RecurrenceRule> rules = GrecMinimal.fromTexts(texts);
@@ -176,6 +178,22 @@ void main() {
       expect(err is InvalidSyntaxException, isTrue);
       expect(
           err.toString(), 'syntax error: `UNTIL` can appear to once at most.');
+    });
+
+    test('should raise an exception when `BYMONTHDAY` appears multiple tyme',
+        () {
+      Exception err;
+      try {
+        GrecMinimal.fromTexts(
+            ['RRULE:FREQ=MONTHLY;COUNT=10;BYMONTHDAY=2;BYMONTHDAY=2']);
+      } catch (e) {
+        err = e;
+      }
+
+      expect(err, isNotNull);
+      expect(err is InvalidSyntaxException, isTrue);
+      expect(err.toString(),
+          'syntax error: `BYMONTHDAY` can appear to once at most.');
     });
   });
 }
