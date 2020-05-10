@@ -193,9 +193,11 @@ void main() {
           equals('RRULE:FREQ=WEEKLY;COUNT=123;INTERVAL=2;BYDAY=SA,SU'));
     });
 
-    test('with bymonthday', ()  {
+    test('with bymonthday', () {
       expect(
-          new RecurrenceRule(Frequency.MONTHLY, null, null, null, null, [1,3,14]).asRuleText(),
+          new RecurrenceRule(
+                  Frequency.MONTHLY, null, null, null, null, [1, 3, 14])
+              .asRuleText(),
           equals('RRULE:FREQ=MONTHLY;BYMONTHDAY=1,3,14'));
     });
   });
