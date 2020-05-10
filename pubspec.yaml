@@ -1,8 +1,7 @@
 name: grec_minimal
 description: A minimal parser/generator of recurrence rule for Google Calendar
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/moznion/dart-grec-minimal
-author: moznion <moznion@gmail.com>
 
 environment:
   sdk: '>=2.1.0 <3.0.0'
